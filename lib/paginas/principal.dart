@@ -3,8 +3,9 @@ import 'package:flutter/widgets.dart';
 import "dart:math";
 
 class PaginaPrincipal extends StatefulWidget {
-  final List<String> nombres;
-  const PaginaPrincipal({Key key, this.nombres}) : super(key: key);
+  final List<String> nombres_amigos;
+  final List<String> nombres_participantes;
+  const PaginaPrincipal({Key key, this.nombres_amigos, this.nombres_participantes}) : super(key: key);
 
   @override
   _PaginaPrincipalState createState() => _PaginaPrincipalState();

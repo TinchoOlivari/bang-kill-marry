@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:full_picado/paginas/principal.dart';
+import 'package:full_picado/paginas/agregar_participantes.dart';
 
-class PaginaAgregar extends StatefulWidget {
+class PaginaAgregarAmigos extends StatefulWidget {
   @override
-  _PaginaAgregarState createState() => _PaginaAgregarState();
+  _PaginaAgregarAmigosState createState() => _PaginaAgregarAmigosState();
 }
 
-class _PaginaAgregarState extends State<PaginaAgregar> {
-  final List<String> nombres = <String>[];
+class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
+  final List<String> nombres_amigos = <String>[];
 
   final GlobalKey<ScaffoldState> _scaffoldstate =
       new GlobalKey<ScaffoldState>();
@@ -19,7 +19,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
   void agregarItems(BuildContext context) {
     if (nameController.text.length > 2 && nameController.text.length < 20) {
       setState(() {
-        nombres.insert(0, nameController.text);
+        nombres_amigos.insert(0, nameController.text);
       });
       nameController.clear();
     } else {
@@ -29,7 +29,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
 
   void borrarItems(BuildContext context, int index) {
     setState(() {
-      nombres.removeAt(index);
+      nombres_amigos.removeAt(index);
     });
   }
 
@@ -47,7 +47,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
     return Scaffold(
       key: _scaffoldstate,
       appBar: AppBar(
-        title: Text('Agregar amigos'),
+        title: Text('Agrega a todos tus amigos'),
       ),
       body: Stack(
         children: [
@@ -68,8 +68,8 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                                   const Radius.circular(15.0),
                                 ),
                               ),
-                              hintStyle: new TextStyle(color: Colors.grey[800]),
-                              hintText: "Ingresar un nombre",
+                              hintStyle: new TextStyle(color: Colors.grey[500]),
+                              hintText: "Nombre/Apodo",
                               fillColor: Colors.white70),
                         ),
                       ),
@@ -93,7 +93,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                     ],
                   ),
                 ),
-                nombres.length == 0
+                nombres_amigos.length == 0
                     ? Expanded(
                         child: Center(
                           child: Column(
@@ -116,7 +116,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                     : Expanded(
                         child: ListView.builder(
                           padding: EdgeInsets.only(bottom: 68),
-                          itemCount: nombres.length,
+                          itemCount: nombres_amigos.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
                               padding: const EdgeInsets.all(8.0),
@@ -134,7 +134,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                                     },
                                   ),
                                   visualDensity: VisualDensity.compact,
-                                  title: Text('${nombres[index]}')),
+                                  title: Text('${nombres_amigos[index]}')),
                             );
                           },
                         ),
@@ -142,7 +142,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
               ],
             ),
           ),
-          nombres.length < 4
+          nombres_amigos.length < 4
               ? Container()
               : Padding(
                   padding: const EdgeInsets.only(bottom: 8),
@@ -156,7 +156,7 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  PaginaPrincipal(nombres: nombres)),
+                                  PaginaAgregarParticipantes(nombres_amigos: nombres_amigos,)),
                         );
                       },
                       shape: RoundedRectangleBorder(
@@ -170,10 +170,9 @@ class _PaginaAgregarState extends State<PaginaAgregar> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Jugar!',
+                              'Siguiente',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 16, fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
