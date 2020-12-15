@@ -24,12 +24,16 @@ class _PaginaAgregarParticipantesState
 
   void agregarItems(BuildContext context) {
     if (nameController.text.length > 2 && nameController.text.length < 20) {
-      setState(() {
-        nombres_participantes.insert(0, nameController.text);
-      });
-      nameController.clear();
+      if (nombres_participantes.contains(nameController.text)) {
+        showSnackError(context, nameController.text + ' ya esta en la lista');
+      } else {
+        setState(() {
+          nombres_participantes.insert(0, nameController.text);
+        });
+        nameController.clear();
+      }
     } else {
-      showSnackError(context, 'El nombre debe tener entre 2 y 20 letras.');
+      showSnackError(context, 'El nombre debe tener entre 2 y 20 letras');
     }
   }
 
@@ -150,7 +154,7 @@ class _PaginaAgregarParticipantesState
               ],
             ),
           ),
-          nombres_participantes.length < 4
+          nombres_participantes.length < 2
               ? Container()
               : Padding(
                   padding: const EdgeInsets.only(bottom: 8),
