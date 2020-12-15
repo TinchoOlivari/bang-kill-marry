@@ -21,8 +21,8 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   @override
   void initState() {
     super.initState();
-    lista_nombres.addAll(widget.nombres);
-    lista_nombres.removeWhere((nombre) => nombre == widget.nombres[orden]);
+    lista_nombres.addAll(widget.nombres_amigos);
+    lista_nombres.removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
     randomizar(lista_nombres);
     randomizar(lista_nombres);
     randomizar(lista_nombres);
@@ -35,14 +35,14 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   }
 
   void elegir() {
-    lista_nombres.removeWhere((nombre) => nombre == widget.nombres[orden]);
+    lista_nombres.removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
     elegidos.insert(0, lista_nombres[0]);
     elegidos.insert(1, lista_nombres[1]);
     elegidos.insert(2, lista_nombres[2]);
   }
 
   void sumar_uno() {
-    if (orden >= lista_nombres.length - 1) {
+    if (orden >= widget.nombres_participantes.length - 1) {
       setState(() {
         orden = 0;
       });
@@ -55,7 +55,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
 
   void restaurar() {
     lista_nombres.clear();
-    lista_nombres.addAll(widget.nombres);
+    lista_nombres.addAll(widget.nombres_amigos);
   }
 
   @override
@@ -78,7 +78,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                     style: TextStyle(fontSize: 32, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    '${widget.nombres[orden]}',
+                    '${widget.nombres_participantes[orden]}',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
                   ),
