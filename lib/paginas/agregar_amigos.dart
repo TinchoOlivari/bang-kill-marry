@@ -17,7 +17,7 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
   TextEditingController nameController = TextEditingController();
 
   void agregarItems(BuildContext context) {
-    if (nameController.text.length > 2 && nameController.text.length < 20) {
+    if (nameController.text.length > 2 && nameController.text.length <= 20) {
       if (nombres_amigos.contains(nameController.text)) {
         showSnackError(context, nameController.text + ' ya esta en la lista');
       } else {

@@ -5,7 +5,9 @@ import "dart:math";
 class PaginaPrincipal extends StatefulWidget {
   final List<String> nombres_amigos;
   final List<String> nombres_participantes;
-  const PaginaPrincipal({Key key, this.nombres_amigos, this.nombres_participantes}) : super(key: key);
+  const PaginaPrincipal(
+      {Key key, this.nombres_amigos, this.nombres_participantes})
+      : super(key: key);
 
   @override
   _PaginaPrincipalState createState() => _PaginaPrincipalState();
@@ -22,7 +24,8 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   void initState() {
     super.initState();
     lista_nombres.addAll(widget.nombres_amigos);
-    lista_nombres.removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
+    lista_nombres
+        .removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
     randomizar(lista_nombres);
     randomizar(lista_nombres);
     randomizar(lista_nombres);
@@ -35,7 +38,8 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   }
 
   void elegir() {
-    lista_nombres.removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
+    lista_nombres
+        .removeWhere((nombre) => nombre == widget.nombres_participantes[orden]);
     elegidos.insert(0, lista_nombres[0]);
     elegidos.insert(1, lista_nombres[1]);
     elegidos.insert(2, lista_nombres[2]);
@@ -77,11 +81,22 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                     'Turno de:',
                     style: TextStyle(fontSize: 32, fontStyle: FontStyle.italic),
                   ),
-                  Text(
-                    '${widget.nombres_participantes[orden]}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 60, fontWeight: FontWeight.w700),
-                  ),
+                  widget.nombres_participantes[orden].length < 15
+                      ? Text(
+                          '${widget.nombres_participantes[orden]}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 60, fontWeight: FontWeight.w700),
+                        )
+                      : Padding(
+                        padding: const EdgeInsets.only(top: 22),
+                        child: Text(
+                            '${widget.nombres_participantes[orden]}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 40, fontWeight: FontWeight.w700),
+                          ),
+                      ),
                 ],
               ),
             ),
