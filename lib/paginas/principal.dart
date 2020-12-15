@@ -110,33 +110,54 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 32),
-              child: MaterialButton(
-                color: Colors.teal,
-                textColor: Colors.white,
-                onPressed: () {
-                  restaurar();
-                  sumar_uno();
-                  randomizar(lista_nombres);
-                  elegir();
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: SizedBox(
-                  width: 250,
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Siguiente',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                    ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      randomizar(lista_nombres);
+                      elegir();
+                      setState(() {});
+                    },
+                    color: Colors.indigo,
+                    textColor: Colors.white,
+                    child: Icon(Icons.refresh),
+                    padding: EdgeInsets.all(12),
+                    shape: CircleBorder(),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 22),
+                    child: MaterialButton(
+                      color: Colors.teal,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        restaurar();
+                        sumar_uno();
+                        randomizar(lista_nombres);
+                        elegir();
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: SizedBox(
+                        width: 250,
+                        height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Siguiente',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
