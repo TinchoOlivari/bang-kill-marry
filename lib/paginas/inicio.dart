@@ -11,7 +11,7 @@ class _PaginaInicioState extends State<PaginaInicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent[200],
+      backgroundColor: Colors.teal,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
