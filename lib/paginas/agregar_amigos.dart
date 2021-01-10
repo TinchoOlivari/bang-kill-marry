@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:full_picado/paginas/agregar_participantes.dart';
 import 'package:full_picado/paginas/principal.dart';
 
 class PaginaAgregarAmigos extends StatefulWidget {
@@ -15,6 +14,12 @@ class PaginaAgregarAmigos extends StatefulWidget {
 
 class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
   final List<String> nombres_amigos = <String>[];
+
+  @override
+  void initState() {
+    nombres_amigos.addAll(widget.nombres_participantes);
+    super.initState();
+  }
 
   final GlobalKey<ScaffoldState> _scaffoldstate =
       new GlobalKey<ScaffoldState>();
