@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:full_picado/paginas/agregar_amigos.dart';
+import 'package:full_picado/paginas/agregar_participantes.dart';
 
 class PaginaInicio extends StatefulWidget {
   @override
@@ -32,7 +32,7 @@ class _PaginaInicioState extends State<PaginaInicio> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PaginaAgregarAmigos()),
+                      MaterialPageRoute(builder: (context) => PaginaAgregarParticipantes()),
                     );
                   },
                   shape: RoundedRectangleBorder(

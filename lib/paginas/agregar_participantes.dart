@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:full_picado/paginas/agregar_amigos.dart';
 import 'package:full_picado/paginas/principal.dart';
 
 class PaginaAgregarParticipantes extends StatefulWidget {
-  final List<String> nombres_amigos;
-  const PaginaAgregarParticipantes({Key key, this.nombres_amigos})
-      : super(key: key);
-
   @override
   _PaginaAgregarParticipantesState createState() =>
       _PaginaAgregarParticipantesState();
@@ -58,7 +55,7 @@ class _PaginaAgregarParticipantesState
       key: _scaffoldstate,
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text('Agrega a los que juegan'),
+        title: Text('Amigos que estan con vos ahora'),
       ),
       body: Stack(
         children: [
@@ -166,12 +163,9 @@ class _PaginaAgregarParticipantesState
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => PaginaPrincipal(
-                              nombres_amigos: widget.nombres_amigos,
-                              nombres_participantes: nombres_participantes,
-                            ),
-                          ),
+                          MaterialPageRoute(builder: (context) => PaginaAgregarAmigos(
+                            nombres_participantes: nombres_participantes
+                          )),
                         );
                       },
                       shape: RoundedRectangleBorder(
@@ -185,7 +179,7 @@ class _PaginaAgregarParticipantesState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Jugar!',
+                              'Siguiente',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w500),
                             ),

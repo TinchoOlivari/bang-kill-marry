@@ -2,8 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:full_picado/paginas/agregar_participantes.dart';
+import 'package:full_picado/paginas/principal.dart';
 
 class PaginaAgregarAmigos extends StatefulWidget {
+  final List<String> nombres_participantes;
+  const PaginaAgregarAmigos({Key key, this.nombres_participantes})
+      : super(key: key);
+
   @override
   _PaginaAgregarAmigosState createState() => _PaginaAgregarAmigosState();
 }
@@ -51,7 +56,7 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
     return Scaffold(
       key: _scaffoldstate,
       appBar: AppBar(
-        title: Text('Agrega a todos tus amigos'),
+        title: Text('Agrega a cualquier amigo'),
       ),
       body: Stack(
         children: [
@@ -159,8 +164,11 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  PaginaAgregarParticipantes(nombres_amigos: nombres_amigos,)),
+                            builder: (context) => PaginaPrincipal(
+                              nombres_amigos: nombres_amigos,
+                              nombres_participantes: widget.nombres_participantes,
+                            ),
+                          ),
                         );
                       },
                       shape: RoundedRectangleBorder(
@@ -174,7 +182,7 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Siguiente',
+                              'Jugar!',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w500),
                             ),
