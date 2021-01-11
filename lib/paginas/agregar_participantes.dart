@@ -160,12 +160,7 @@ class _PaginaAgregarParticipantesState
                       color: Colors.indigo,
                       textColor: Colors.white,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PaginaAgregarAmigos(
-                            nombres_participantes: nombres_participantes
-                          )),
-                        );
+                        Navigator.of(context).push(ThirdPageRoute(nombres_participantes));
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -196,4 +191,8 @@ class _PaginaAgregarParticipantesState
 
 extension on String {
   String get capitalize => this.split(" ").map((str) => str[0].toUpperCase() + str.substring(1)).join(" ");
+}
+
+class ThirdPageRoute extends CupertinoPageRoute {
+  ThirdPageRoute(nombres_participantes) : super(builder: (BuildContext context) => new PaginaAgregarAmigos(nombres_participantes: nombres_participantes));
 }

@@ -29,7 +29,10 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
   void agregarItems(BuildContext context) {
     if (nameController.text.length > 2 && nameController.text.length <= 20) {
       if (nombres_amigos.contains(nameController.text.toLowerCase())) {
-        showSnackError(context, nameController.text.toLowerCase().capitalize + ' ya esta en la lista');
+        showSnackError(
+            context,
+            nameController.text.toLowerCase().capitalize +
+                ' ya esta en la lista');
       } else {
         setState(() {
           nombres_amigos.insert(0, nameController.text.toLowerCase());
@@ -148,8 +151,8 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
                                     },
                                   ),
                                   visualDensity: VisualDensity.compact,
-
-                                  title: Text('${nombres_amigos[index].capitalize}')),
+                                  title: Text(
+                                      '${nombres_amigos[index].capitalize}')),
                             );
                           },
                         ),
@@ -167,15 +170,8 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
                       color: Colors.teal,
                       textColor: Colors.white,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PaginaPrincipal(
-                              nombres_amigos: nombres_amigos,
-                              nombres_participantes: widget.nombres_participantes,
-                            ),
-                          ),
-                        );
+                        Navigator.of(context).push(FourthPageRoute(
+                            nombres_amigos, widget.nombres_participantes));
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -205,5 +201,18 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
 }
 
 extension on String {
-  String get capitalize => this.split(" ").map((str) => str[0].toUpperCase() + str.substring(1)).join(" ");
+  String get capitalize => this
+      .split(" ")
+      .map((str) => str[0].toUpperCase() + str.substring(1))
+      .join(" ");
+}
+
+class FourthPageRoute extends CupertinoPageRoute {
+  FourthPageRoute(nombres_amigos, nombres_participantes)
+      : super(
+          builder: (BuildContext context) => new PaginaPrincipal(
+            nombres_amigos: nombres_amigos,
+            nombres_participantes: nombres_participantes,
+          ),
+        );
 }

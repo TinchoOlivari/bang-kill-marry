@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:full_picado/paginas/agregar_participantes.dart';
@@ -28,10 +29,7 @@ class _PaginaInicioState extends State<PaginaInicio> {
                 color: Color.fromRGBO(56, 90, 124, 1),
                 textColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PaginaAgregarParticipantes()),
-                  );
+                  Navigator.of(context).push(new SecondPageRoute());
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
@@ -58,4 +56,8 @@ class _PaginaInicioState extends State<PaginaInicio> {
       ),
     );
   }
+}
+
+class SecondPageRoute extends CupertinoPageRoute {
+  SecondPageRoute() : super(builder: (BuildContext context) => new PaginaAgregarParticipantes());
 }
