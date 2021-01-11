@@ -83,7 +83,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   ),
                   widget.nombres_participantes[orden].length < 15
                       ? Text(
-                          '${widget.nombres_participantes[orden]}',
+                          '${widget.nombres_participantes[orden].capitalize}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 60, fontWeight: FontWeight.w700),
@@ -91,7 +91,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                       : Padding(
                         padding: const EdgeInsets.only(top: 22),
                         child: Text(
-                            '${widget.nombres_participantes[orden]}',
+                            '${widget.nombres_participantes[orden].capitalize}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.w700),
@@ -115,7 +115,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                   itemBuilder: (BuildContext context, int index) {
                     return Center(
                         child: Text(
-                      elegidos[index],
+                      elegidos[index].capitalize,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 30),
                     ));
@@ -180,4 +180,8 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
       ),
     );
   }
+}
+
+extension on String {
+  String get capitalize => this.split(" ").map((str) => str[0].toUpperCase() + str.substring(1)).join(" ");
 }

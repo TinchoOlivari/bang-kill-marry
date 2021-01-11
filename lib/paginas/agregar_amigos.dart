@@ -28,11 +28,11 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
 
   void agregarItems(BuildContext context) {
     if (nameController.text.length > 2 && nameController.text.length <= 20) {
-      if (nombres_amigos.contains(nameController.text)) {
-        showSnackError(context, nameController.text + ' ya esta en la lista');
+      if (nombres_amigos.contains(nameController.text.toLowerCase())) {
+        showSnackError(context, nameController.text.toLowerCase().capitalize + ' ya esta en la lista');
       } else {
         setState(() {
-          nombres_amigos.insert(0, nameController.text);
+          nombres_amigos.insert(0, nameController.text.toLowerCase());
         });
         nameController.clear();
       }
@@ -148,7 +148,8 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
                                     },
                                   ),
                                   visualDensity: VisualDensity.compact,
-                                  title: Text('${nombres_amigos[index]}')),
+
+                                  title: Text('${nombres_amigos[index].capitalize}')),
                             );
                           },
                         ),
@@ -201,4 +202,8 @@ class _PaginaAgregarAmigosState extends State<PaginaAgregarAmigos> {
       ),
     );
   }
+}
+
+extension on String {
+  String get capitalize => this.split(" ").map((str) => str[0].toUpperCase() + str.substring(1)).join(" ");
 }
